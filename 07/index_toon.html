@@ -72,15 +72,23 @@
         r = new Robot(0, -55, 0);
         r.show(scene);
 
+        var textureLoader =  new THREE.TextureLoader();
+        var threeTone = textureLoader.load('threeTone.jpg');
+        threeTone.minFilter = THREE.NearestFilter;
+        threeTone.magFilter = THREE.NearestFilter;
+
+
 
         var loader = new THREE.PLYLoader();
-        loader.load('beethoven.ply', function (geometry) {
+        loader.load('Armadillo.ply', function (geometry) {
 
           geometry.computeVertexNormals();
 
-          var armadilloMaterial = new THREE.MeshStandardMaterial( {
-            color: 'red'
+          var armadilloMaterial = new THREE.MeshToonMaterial( {
+             color: 0x21ce70, gradientMap:threeTone
           } );
+
+
 
           scene.add( new THREE.Mesh( geometry, armadilloMaterial ) );
 
